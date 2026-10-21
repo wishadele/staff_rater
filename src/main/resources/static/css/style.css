@@ -1,0 +1,80 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    background: #f5f6fa;
+    color: #1f2430;
+    line-height: 1.5;
+}
+
+header.site {
+    background: #a6192e; /* SFU red */
+    color: #fff;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header.site a { color: #fff; text-decoration: none; font-weight: 600; }
+
+main { max-width: 860px; margin: 24px auto; padding: 0 16px; }
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+h1 { margin-top: 0; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #e6e8ef; }
+th { font-size: 0.85rem; text-transform: uppercase; color: #5b6275; }
+
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    background: #a6192e;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+.btn.secondary { background: #e6e8ef; color: #1f2430; }
+.btn.danger { background: #c0392b; }
+
+.actions { display: flex; gap: 10px; margin-top: 18px; align-items: center; }
+.actions form { margin: 0; }
+
+.field { margin-bottom: 16px; }
+.field label { display: block; font-weight: 600; margin-bottom: 4px; }
+.field input, .field select, .field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #c5c9d6;
+    border-radius: 6px;
+    font: inherit;
+}
+.field input.invalid, .field select.invalid, .field textarea.invalid { border-color: #c0392b; }
+.error { color: #c0392b; font-size: 0.9rem; margin-top: 4px; }
+
+.scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+dl { display: grid; grid-template-columns: 180px 1fr; gap: 8px 12px; }
+dt { font-weight: 600; color: #5b6275; }
+dd { margin: 0; }
+
+.empty { color: #5b6275; padding: 12px 0; }
+.score-badge {
+    display: inline-block;
+    min-width: 42px;
+    text-align: center;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #eef0f7;
+    font-weight: 600;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rating Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main>
+    <div class="card">
+        <h1 th:text="${rating.profile.displayTitle()}">Prof. Jane Doe</h1>
+
+        <dl>
+            <dt>Name</dt>
+            <dd th:text="${rating.name}">Jane Doe</dd>
+            <dt>Email</dt>
+            <dd th:text="${rating.email}">jane@sfu.ca</dd>
+            <dt>Role</dt>
+            <dd th:text="${rating.roleType.label}">Professor</dd>
+            <dt>Clarity</dt>
+            <dd th:text="${rating.clarity} + ' / 10'">8 / 10</dd>
+            <dt>Niceness</dt>
+            <dd th:text="${rating.niceness} + ' / 10'">9 / 10</dd>
+            <dt>Knowledgeable</dt>
+            <dd th:text="${rating.knowledgeableScore} + ' / 10'">7 / 10</dd>
+            <dt>Overall</dt>
+            <dd th:text="${#numbers.formatDecimal(rating.overallScore, 1, 1)} + ' / 10'">8.0 / 10</dd>
+            <dt>Comment</dt>
+            <dd th:text="${#strings.isEmpty(rating.comment)} ? '(no comment)' : ${rating.comment}">Great lectures</dd>
+            <dt>Created</dt>
+            <dd th:text="${rating.createdAtDisplay}">2026-10-20 10:00</dd>
+            <dt>Last updated</dt>
+            <dd th:text="${rating.updatedAtDisplay}">2026-10-20 10:00</dd>
+        </dl>
+
+        <div class="actions">
+            <a class="btn" th:href="@{/ratings/{id}/edit(id=${rating.id})}">Edit</a>
+            <a class="btn danger" th:href="@{/ratings/{id}/delete(id=${rating.id})}">Delete</a>
+            <a class="btn secondary" th:href="@{/}">Back to list</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

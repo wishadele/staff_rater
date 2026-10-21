@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Staff Ratings</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main>
+    <div class="card">
+        <h1>Teaching staff ratings</h1>
+
+        <p class="empty" th:if="${#lists.isEmpty(ratings)}">
+            No ratings yet. <a th:href="@{/ratings/new}">Add the first one.</a>
+        </p>
+
+        <table th:unless="${#lists.isEmpty(ratings)}">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Overall</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${ratings}">
+                <!-- displayTitle() is polymorphic: each role formats the name its own way -->
+                <td th:text="${r.profile.displayTitle()}">Prof. Jane Doe</td>
+                <td th:text="${r.roleType.label}">Professor</td>
+                <td><span class="score-badge" th:text="${#numbers.formatDecimal(r.overallScore, 1, 1)}">8.3</span> / 10</td>
+                <td><a th:href="@{/ratings/{id}(id=${r.id})}">View</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>
