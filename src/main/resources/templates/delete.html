@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Rating</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main>
+    <div class="card">
+        <h1>Delete this rating?</h1>
+        <p>
+            You are about to delete the rating for
+            <strong th:text="${rating.profile.displayTitle()}">Prof. Jane Doe</strong>.
+            This cannot be undone.
+        </p>
+
+        <div class="actions">
+            <form th:action="@{/ratings/{id}/delete(id=${rating.id})}" method="post">
+                <button class="btn danger" type="submit">Yes, delete</button>
+            </form>
+            <a class="btn secondary" th:href="@{/ratings/{id}(id=${rating.id})}">Cancel</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

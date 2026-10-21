@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${pageTitle}">Rating Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{fragments :: header}"></header>
+<main>
+    <div class="card">
+        <h1 th:text="${pageTitle}">Add a rating</h1>
+
+        <!-- novalidate so the server-side validation messages are always what the user sees -->
+        <form th:action="@{${formAction}}" th:object="${rating}" method="post" novalidate>
+
+            <div class="field">
+                <label for="name">Name</label>
+                <input id="name" type="text" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? 'invalid'">
+                <div class="error" th:if="${#fields.hasErrors('name')}" th:text="${#fields.errors('name')[0]}">Name error</div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="text" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'invalid'">
+                <div class="error" th:if="${#fields.hasErrors('email')}" th:text="${#fields.errors('email')[0]}">Email error</div>
+            </div>
+
+            <div class="field">
+                <label for="roleType">Role</label>
+                <select id="roleType" th:field="*{roleType}" th:classappend="${#fields.hasErrors('roleType')} ? 'invalid'">
+                    <option value="">-- choose a role --</option>
+                    <option th:each="r : ${roleTypes}" th:value="${r}" th:text="${r.label}">Professor</option>
+                </select>
+                <div class="error" th:if="${#fields.hasErrors('roleType')}" th:text="${#fields.errors('roleType')[0]}">Role error</div>
+            </div>
+
+            <div class="scores">
+                <div class="field">
+                    <label for="clarity">Clarity (1-10)</label>
+                    <input id="clarity" type="text" inputmode="numeric" th:field="*{clarity}" th:classappend="${#fields.hasErrors('clarity')} ? 'invalid'">
+                    <div class="error" th:if="${#fields.hasErrors('clarity')}" th:text="${#fields.errors('clarity')[0]}">Clarity error</div>
+                </div>
+                <div class="field">
+                    <label for="niceness">Niceness (1-10)</label>
+                    <input id="niceness" type="text" inputmode="numeric" th:field="*{niceness}" th:classappend="${#fields.hasErrors('niceness')} ? 'invalid'">
+                    <div class="error" th:if="${#fields.hasErrors('niceness')}" th:text="${#fields.errors('niceness')[0]}">Niceness error</div>
+                </div>
+                <div class="field">
+                    <label for="knowledgeableScore">Knowledgeable (1-10)</label>
+                    <input id="knowledgeableScore" type="text" inputmode="numeric" th:field="*{knowledgeableScore}" th:classappend="${#fields.hasErrors('knowledgeableScore')} ? 'invalid'">
+                    <div class="error" th:if="${#fields.hasErrors('knowledgeableScore')}" th:text="${#fields.errors('knowledgeableScore')[0]}">Score error</div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="comment">Comment (optional, max 500 characters)</label>
+                <textarea id="comment" rows="4" th:field="*{comment}" th:classappend="${#fields.hasErrors('comment')} ? 'invalid'"></textarea>
+                <div class="error" th:if="${#fields.hasErrors('comment')}" th:text="${#fields.errors('comment')[0]}">Comment error</div>
+            </div>
+
+            <div class="actions">
+                <button class="btn" type="submit">Save</button>
+                <a class="btn secondary" th:href="@{/}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

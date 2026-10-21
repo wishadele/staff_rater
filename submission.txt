@@ -1,0 +1,19 @@
+CMPT 276 - Assignment 2: Rate CS Teaching Staff
+
+Render URL: <PASTE YOUR RENDER URL HERE>
+GitHub repository URL: <PASTE YOUR GITHUB REPO URL HERE>
+
+Known Issues / Future Work
+
+Known issues
+- A missing id (e.g. /ratings/999) shows Spring's default error page rather than a custom 404 page.
+- The unique email check is case-insensitive in the controller, but the database constraint is case-sensitive, so two requests at the same moment with emails that differ only by case could both get through.
+- The Render free plan sleeps after inactivity, so the first page load can be slow.
+- I could not run the test suite in the environment where the code was drafted, so run `mvn test` before submitting and fix anything that fails. <DELETE THIS LINE ONCE YOU HAVE RUN THEM>
+
+Future work
+- Calculate an average rating per instructor (this is "iteration 1").
+- Search / filter / sort the list by role or score, and pagination.
+- Login, so only signed-in users can add, edit or delete ratings.
+- Use database migrations (Flyway) instead of hibernate ddl-auto=update.
+- Integration tests with @SpringBootTest against a real Postgres (Testcontainers).
